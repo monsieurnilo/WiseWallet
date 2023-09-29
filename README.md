@@ -9,8 +9,7 @@ L’application permettra de comparer son budget avec un budget moyen
 ## Routes
 
 1. Home accessible via l’url (“/”)
-2. Sign-in accessible via l’url (”/login)
-3. Log-in accessible via l’url (“/signin”)
+2. Authentification accessible via l’url (”/authentification)
 4. Disconnect accessible via l’url (“/disconnect”)
 5. Graphs accessible via l’url (“/graphs”)
 6. Budget accessible via l’url (“/budget”)
@@ -22,13 +21,9 @@ L’application permettra de comparer son budget avec un budget moyen
 
 Accueil récapitulatif du but de l’application.
 
-### Sign-in
+### Authentification
 
-Inscription via un formulaire.
-
-### Log-in
-
-Connexion via un formulaire.
+Inscription et connexion via des formulaires.
 
 ### Disconnect
 
