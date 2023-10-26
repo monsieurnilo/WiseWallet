@@ -46,3 +46,10 @@ Formulaire où l’utilisateur rentre son budget.
 
 Contiendra au minimum les noms des étudiants membres du projet ainsi qu'une
 courte présentation du travail réalisé par chaque membre.
+
+
+## Lancer le backend
+cd .\backend
+npm install
+node server
+
