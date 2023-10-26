@@ -1,28 +1,24 @@
 import * as React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { NativeRouter, Route, Routes } from "react-router-native";
+import { View, Text } from "react-native";
 import HomeScreen from "./screens/HomeScreen";
 import AboutScreen from "./screens/AboutScreen";
 
-const Stack = createStackNavigator();
+class App extends React.Component {
 
-function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="home">
-        <Stack.Screen
-          name="home"
-          component={HomeScreen}
-          options={{ title: "home" }}
-        />
-        <Stack.Screen
-          name="about"
-          component={AboutScreen}
-          options={{ title: "about" }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+  render() {
+    return (
+      <NativeRouter>
+        <View>
+          <Routes>
+            <Route path="/" Component={HomeScreen} />
+            <Route path="/about" Component={AboutScreen} />
+          </Routes>
+        </View>
+      </NativeRouter>
+    );
+  }
+
 }
 
 export default App;
