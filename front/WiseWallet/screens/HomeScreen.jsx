@@ -1,20 +1,18 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { View, Text } from "react-native";
+import { Link } from "react-router-native";
 
-function HomeScreen() {
-  const navigation = useNavigation();
-
-  const goToAboutScreen = () => {
-    navigation.navigate("about");
-  };
-
-  return (
-    <View>
-      <Text style={{ fontSize: 20 }}>Home Screen</Text>
-      <Button title="Go to About Screen" onPress={goToAboutScreen} />
-    </View>
-  );
+class HomeScreen extends React.Component {
+  render() {
+    return (
+      <View>
+        <Text style={{ fontSize: 20 }}>Home Screen</Text>
+        <Link to="/about">
+          <Text>about</Text>
+        </Link>
+      </View>
+    );
+  }
 }
 
 export default HomeScreen;
