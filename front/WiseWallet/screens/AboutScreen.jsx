@@ -1,16 +1,16 @@
 import React from "react";
-import { View, Text } from "react-native";
-import Graph from "../components/graph/Graph";
+import { View, Text, Image, FlatList, ScrollView } from "react-native";
+import AboutComponent from "../components/AboutComponent";
 
-class AboutScreen extends React.Component {
-  render() {
-    return (
-      <View>
-        <Text style={{ fontSize: 20 }}>About Screen</Text>
-        <Graph userGraph={false} />
-      </View>
-    );
-  }
+function AboutScreen() {
+  return (
+    <ScrollView >
+      <Text style={{ fontSize: 20 }}>About Screen</Text>
+      <AboutComponent name='Victorien Dit Richard Teddy'></AboutComponent>
+      <AboutComponent name='Pavard Raphaël'></AboutComponent>
+      <AboutComponent name='Linz Pierre'></AboutComponent>
+    </ScrollView >
+  );
 }
 
 export default AboutScreen;
