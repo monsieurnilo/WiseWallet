@@ -1,8 +1,10 @@
 # Mise en contexte
 
+Ce projet a été realisé lors de la préparation du master "EXPERT EN INGÉNIERIE DU DÉVELOPPEMENT ET EN ARCHITECTURE LOGICIELLE". 
+
 # Introduction à l’application
 
-L’application permettra de comparer son budget avec un budget moyen
+L’application permettra de comparer son budget avec le budget moyen des français. Source INSEE.
 
 # Front-end
 
