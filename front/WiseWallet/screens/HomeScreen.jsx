@@ -10,6 +10,9 @@ class HomeScreen extends React.Component {
         <Link to="/about">
           <Text>about</Text>
         </Link>
+        <Link to="/graph">
+          <Text>graph</Text>
+        </Link>
       </View>
     );
   }
