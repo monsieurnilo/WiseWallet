@@ -7,7 +7,6 @@ class AboutScreen extends React.Component {
     return (
       <View>
         <Text style={{ fontSize: 20 }}>About Screen</Text>
-        <Graph userGraph={false} />
       </View>
     );
   }

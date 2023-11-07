@@ -1,5 +1,4 @@
 import natGraph from "./natGraph.json";
-import fetchUserGraphData from "./graphService";
 import randomColor from "randomcolor";
 import { Dimensions } from "react-native";
 import { PieChart } from "react-native-chart-kit";
@@ -7,7 +6,6 @@ import React from "react";
 
 //if user graph exist then we use the user personalized graph, else we use the national one
 export default class Graph extends React.Component {
-  userGraph: boolean;
   graphData: { data: {} };
   nameData: string[];
   numberData: string[];
@@ -15,15 +13,12 @@ export default class Graph extends React.Component {
 
   constructor(props) {
     super(props);
-    this.userGraph = props.userGraph;
-    if (props.userGraph == false) {
+    if (!props.graphData) {
       this.graphData = {
         data: natGraph,
       };
     } else {
-      this.graphData = {
-        data: fetchUserGraphData,
-      };
+      this.graphData = props.graphData;
     }
 
     this.nameData = Object.keys(this.graphData["data"]);
@@ -32,9 +27,9 @@ export default class Graph extends React.Component {
   }
 
   render() {
-    const data = this.nameData.map((name, index) => ({
+    let data = this.nameData.map((name, index) => ({
       name: name,
-      number: parseInt(this.numberData[index]), // Assuming you want numbers as integers
+      number: parseInt(this.numberData[index]),
       color: this.graphColors[index],
     }));
 
