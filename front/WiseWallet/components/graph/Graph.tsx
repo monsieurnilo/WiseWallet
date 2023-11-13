@@ -13,12 +13,15 @@ export default class Graph extends React.Component {
 
   constructor(props) {
     super(props);
+
     if (!props.graphData) {
       this.graphData = {
         data: natGraph,
       };
-    } else {
-      this.graphData = props.graphData;
+    } else if (props.graphData !== "null" && props.graphData !== "undefined") {
+      this.graphData = {
+        data: props.graphData,
+      };
     }
 
     this.nameData = Object.keys(this.graphData["data"]);
