@@ -4,6 +4,7 @@ import { View} from "react-native";
 import HomeScreen from "./screens/HomeScreen";
 import AboutScreen from "./screens/AboutScreen";
 import GraphScreen from "./screens/GraphScreen";
+import BudgetScreen from "./screens/BudgetScreen";
 
 
 class App extends React.Component {
@@ -16,6 +17,7 @@ class App extends React.Component {
             <Route path="/" Component={HomeScreen} />
             <Route path="/about" Component={AboutScreen} />
             <Route path="/graph" Component={GraphScreen} />
+            <Route path="/budget" Component={BudgetScreen} />
           </Routes>
         </View>
       </NativeRouter>

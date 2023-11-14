@@ -6,11 +6,11 @@ async function graphService() {
     let expenses = [];
     // Fetch categories
     try {
-        const response = await fetch(`http://localhost:3000/category/`, {
+        const response = await fetch(`http://localhost:3000/category`, {
             method: "GET",
-            headers: {
-                Authorization: `Bearer ${bearerToken}`
-            }
+            // headers: {
+            //     Authorization: `Bearer ${bearerToken}`
+            // }
         });
 
         if (!response.ok) {
@@ -27,9 +27,9 @@ async function graphService() {
     try {
         const response = await fetch(`http://localhost:3000/budget/${userId}`, {
             method: "GET",
-            headers: {
-                Authorization: `Bearer ${bearerToken}`
-            }
+            // headers: {
+            //     Authorization: `Bearer ${bearerToken}`
+            // }
         });
 
         if (!response.ok) {
@@ -59,7 +59,6 @@ async function graphService() {
         }
     });
 
-    console.log(categoryExpenses)
     return categoryExpenses;
 }
 

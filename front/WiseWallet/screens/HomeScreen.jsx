@@ -8,7 +8,7 @@ class HomeScreen extends React.Component {
     return (
       <View>
         <Header></Header>
-       
+        <Footer></Footer>
       </View>
     );
   }
