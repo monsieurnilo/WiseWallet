@@ -7,7 +7,7 @@ const bearerToken = "not implemented yet"
 async function budgetService(budgetData, categoryName, value) {
     console.log(budgetData, " ", categoryName, " ", value)
 
-    categoryID = await fetchCategoryID(categoryName) // TODO TODO 
+    let categoryID = await fetchCategoryID(categoryName) // TODO TODO 
 
 
     if (budgetData.data && budgetData.data[categoryName] !== undefined) {
