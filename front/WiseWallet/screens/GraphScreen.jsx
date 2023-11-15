@@ -1,9 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { Link } from "react-router-native";
-import Graph from "../components/graph/Graph";
-import fetchGraphData from "../components/graph/graphService";
-
+import Graph from "../components/budget/graph/Graph";
+import fetchGraphData from "../components/budget/graph/graphService";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 class GraphScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -23,8 +24,9 @@ class GraphScreen extends React.Component {
 
     return (
       <View>
+        <Header></Header>
         <View>
-          <Text>Mon graphe</Text>
+          <Text style={{ fontSize: 20 }}>Mon graphe</Text>
           <Link to="/budget">
             <Text>Gérer mon budget</Text>
           </Link>
@@ -34,6 +36,7 @@ class GraphScreen extends React.Component {
           <Text>Moyenne nationale</Text>
           <Graph />
         </View>
+        <Footer></Footer>
       </View>
     );
   }
