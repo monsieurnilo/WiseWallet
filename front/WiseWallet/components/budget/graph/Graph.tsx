@@ -47,8 +47,8 @@ export default class Graph extends React.Component {
     return (
       <PieChart
         data={data}
-        width={Dimensions.get("window").width}
-        height={400}
+        width={350}
+        height={350}
         chartConfig={chartConfig}
         accessor="number"
         backgroundColor="transparent"

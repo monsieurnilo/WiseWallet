@@ -5,8 +5,8 @@ const auth = require('../middleware/auth');
 
 const budgetController = require('../controllers/budget');
 
-router.get('/:userId',auth, budgetController.getAllBudgetFromUser);
-router.post('/',auth, budgetController.createBudget);
-router.put('/:id',auth, budgetController.modifyBudget);
+router.get('/:userId', budgetController.getAllBudgetFromUser);
+router.post('/', budgetController.createBudget);
+router.put('/:id', budgetController.modifyBudget);
 
 module.exports = router;
