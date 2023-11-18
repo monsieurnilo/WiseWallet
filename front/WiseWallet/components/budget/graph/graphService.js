@@ -8,9 +8,9 @@ async function graphService() {
     try {
         const response = await fetch(`http://localhost:3000/category`, {
             method: "GET",
-            // headers: {
-            //     Authorization: `Bearer ${bearerToken}`
-            // }
+            headers: {
+                Authorization: `Bearer ${bearerToken}`
+            }
         });
 
         if (!response.ok) {

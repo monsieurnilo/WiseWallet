@@ -7,32 +7,32 @@ import categoryList from "./catList";
 import budgetService from "./budgetService";
 
 export default class Budget extends React.Component {
-  budgetData: { data: {} };
-  nameData: string[];
-  numberData: string[];
   state = {
+    nameData: [],
+    numberData: [],
     selectedCategory: "",
     value: "",
+    budgetData: { data: {} },
   };
 
   constructor(props) {
     super(props);
 
-    this.state = {
-      selectedCategory: "",
-      value: "",
-    };
-
     if (props.budgetData) {
-      this.budgetData = {
-        data: props.budgetData,
-      };
-      this.nameData = Object.keys(this.budgetData["data"]);
-      this.numberData = Object.values(this.budgetData["data"]);
+      this.setState({
+        budgetData: {
+          data: props.budgetData,
+        },
+      });
+      this.setState({
+        nameData: Object.keys(this.state.budgetData["data"]),
+        numberData: Object.values(this.state.budgetData["data"]),
+      });
     } else {
-      console.log("No budget found");
-      this.nameData = [];
-      this.numberData = [];
+      this.setState({
+        nameData: [],
+        numberData: [],
+      });
     }
   }
 
@@ -44,90 +44,106 @@ export default class Budget extends React.Component {
     this.setState({ selectedCategory });
   };
 
-  setBudgetData = (newData) => {
-    this.setState({
-      budgetData: {
-        data: newData,
-      },
+  updateClientData = async () => {
+    let { selectedCategory, value, budgetData } = this.state;
+    if (selectedCategory == null || selectedCategory === "") {
+      selectedCategory = "Produits alimentaires et boissons non alcoolisées";
+    }
+    if (value == null || value === "") {
+      value = "0";
+    }
+
+    // Will update the budget
+    const newData = await budgetService(budgetData, selectedCategory, value);
+
+    // Use the callback form of setState to ensure you're using the latest state
+    this.setState(() => {
+      return {
+        budgetData: {
+          data: newData,
+        },
+        nameData: Object.keys(newData),
+        numberData: Object.values(newData),
+      };
     });
   };
 
-  updateClientData = () => {
-    const { selectedCategory, value } = this.state;
-    //will update the budget
-    const data = budgetService(this.budgetData, selectedCategory, value);
-    this.setBudgetData(data);
-  };
+  async componentDidMount() {
+    try {
+      await this.updateClientData();
+    } catch (error) {
+      console.error("Error updating client data:", error);
+    }
+  }
 
   render() {
     const styles = budgetStyle;
 
-    const nameData = this.nameData;
-    const numberData = this.numberData;
-
     if (
-      !nameData ||
-      !numberData ||
-      nameData.length === 0 ||
-      numberData.length === 0
+      !this.state.nameData ||
+      !this.state.numberData ||
+      this.state.nameData.length === 0 ||
+      this.state.numberData.length === 0
     ) {
       return (
-        <View style={styles.container}>
+        <View>
           <Text>Loading ....</Text>
         </View>
       );
+    } else {
+      return (
+        <View id="test" style={styles.container}>
+          <Text style={styles.header}>Budget Table</Text>
+
+          <View style={styles.section}>
+            <DataTable style={styles.dataTable}>
+              <DataTable.Header style={styles.tableHeader}>
+                <DataTable.Title>Catégorie</DataTable.Title>
+                <DataTable.Title>Valeur</DataTable.Title>
+              </DataTable.Header>
+
+              {this.state.nameData.map((name, index) => (
+                <DataTable.Row key={index}>
+                  <DataTable.Cell>{name}</DataTable.Cell>
+                  <DataTable.Cell>
+                    {this.state.numberData[index]}
+                  </DataTable.Cell>
+                </DataTable.Row>
+              ))}
+            </DataTable>
+          </View>
+
+          <View style={styles.section}>
+            <Text style={styles.label}>Rajouter des flux monétaire</Text>
+
+            <Picker
+              selectedValue={this.state.selectedCategory}
+              onValueChange={(itemValue) => this.setCategory(itemValue)}
+              style={styles.picker}
+            >
+              {categoryList.map((category, index) => (
+                <Picker.Item key={index} label={category} value={category} />
+              ))}
+            </Picker>
+
+            <TextInput
+              style={styles.input}
+              placeholder="Valeur du flux en euro"
+              keyboardType="numeric"
+              onChangeText={(val) => this.setValue(val)}
+            />
+
+            <TouchableOpacity
+              style={styles.addButton}
+              onPress={async () => {
+                await this.updateClientData();
+              }}
+            >
+              <Text style={styles.addButtonText}>Add</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      );
     }
-
-    return (
-      <View style={styles.container}>
-        <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10 }}>
-          Budget Table
-        </Text>
-
-        <View style={styles.section}>
-          <DataTable style={{ marginBottom: 20 }}>
-            <DataTable.Header style={styles.tableHeader}>
-              <DataTable.Title>Catégorie</DataTable.Title>
-              <DataTable.Title>Valeur</DataTable.Title>
-            </DataTable.Header>
-
-            {nameData.map((name, index) => (
-              <DataTable.Row key={index}>
-                <DataTable.Cell>{name}</DataTable.Cell>
-                <DataTable.Cell>{numberData[index]}</DataTable.Cell>
-              </DataTable.Row>
-            ))}
-          </DataTable>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.label}>Rajouter des flux monétaire</Text>
-
-          <Picker
-            selectedValue={this.state.selectedCategory}
-            onValueChange={(itemValue) => this.setCategory(itemValue)}
-            style={styles.picker}
-          >
-            {categoryList.map((category, index) => (
-              <Picker.Item key={index} label={category} value={category} />
-            ))}
-          </Picker>
-
-          <TextInput
-            style={styles.input}
-            placeholder="Valeur du flux en euro"
-            keyboardType="numeric"
-            onChangeText={(val) => this.setValue(val)}
-          />
-
-          <TouchableOpacity
-            style={styles.addButton}
-            onPress={this.updateClientData}
-          >
-            <Text style={styles.addButtonText}>Add</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
   }
 }
