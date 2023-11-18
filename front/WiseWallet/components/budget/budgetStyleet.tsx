@@ -1,8 +1,16 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    padding: 15,
+    width: "100%",
+  },
+  header: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  dataTable: {
+    marginBottom: 20,
   },
   tableHeader: {
     backgroundColor: "#DCDCDC",
@@ -16,8 +24,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   picker: {
-    height: 50,
-    width: "100%",
+    height: "auto",
+    width: "80%",
     marginBottom: 10,
     borderWidth: 1,
     borderColor: "#ccc",
@@ -25,17 +33,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   input: {
-    height: 40,
-    width: "100%",
+    height: "auto",
+    width: "80%",
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 5,
-    paddingLeft: 10,
     backgroundColor: "#fff",
   },
   addButton: {
+    height: "auto",
+    width: "80%",
     backgroundColor: "blue",
-    padding: 10,
     borderRadius: 5,
     alignItems: "center",
     justifyContent: "center",

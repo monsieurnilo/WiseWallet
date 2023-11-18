@@ -1,15 +1,28 @@
 import natGraph from "./natGraph.json";
-import randomColor from "randomcolor";
-import { Dimensions } from "react-native";
+import { Dimensions, View, Text } from "react-native";
 import { PieChart } from "react-native-chart-kit";
 import React from "react";
 
-//if user graph exist then we use the user personalized graph, else we use the national one
+const pastelColors = [
+  "#FFB6C1", // Pastel Pink
+  "#FFD700", // Pastel Yellow
+  "#98FB98", // Pastel Green
+  "#ADD8E6", // Pastel Blue
+  "#FFA07A", // Light Salmon
+  "#9370DB", // Medium Purple
+  "#F0E68C", // Khaki
+  "#20B2AA", // Light Sea Green
+  "#FF6347", // Tomato
+  "#C71585", // Medium Violet Red
+  "#40E0D0", // Turquoise
+  "#FFDAB9", // Peach Puff
+];
+
 export default class Graph extends React.Component {
-  graphData: { data: {} };
-  nameData: string[];
-  numberData: string[];
-  graphColors: any;
+  graphData = { data: {} };
+  nameData = [];
+  numberData = [];
+  graphColors = [];
 
   constructor(props) {
     super(props);
@@ -24,9 +37,9 @@ export default class Graph extends React.Component {
       };
     }
 
-    this.nameData = Object.keys(this.graphData["data"]);
-    this.numberData = Object.values(this.graphData["data"]);
-    this.graphColors = randomColor({ count: this.nameData.length });
+    this.nameData = Object.keys(this.graphData.data);
+    this.numberData = Object.values(this.graphData.data);
+    this.graphColors = pastelColors.slice(0, this.nameData.length);
   }
 
   render() {
@@ -44,17 +57,44 @@ export default class Graph extends React.Component {
       strokeWidth: 2,
     };
 
+    const screenWidth = Dimensions.get("window").width;
+
     return (
-      <PieChart
-        data={data}
-        width={350}
-        height={350}
-        chartConfig={chartConfig}
-        accessor="number"
-        backgroundColor="transparent"
-        paddingLeft="15"
-        absolute
-      />
+      <View>
+        <PieChart
+          data={data}
+          width={screenWidth}
+          height={250}
+          chartConfig={chartConfig}
+          accessor="number"
+          backgroundColor="transparent"
+          paddingLeft="0"
+          hasLegend={false}
+        />
+        <View>
+          {data.map((item, index) => (
+            <View
+              key={index}
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                marginBottom: 5,
+              }}
+            >
+              <View
+                style={{
+                  width: 10,
+                  height: 10,
+                  backgroundColor: item.color,
+                  borderRadius: 5,
+                  marginRight: 5,
+                }}
+              />
+              <Text>{item.name}</Text>
+            </View>
+          ))}
+        </View>
+      </View>
     );
   }
 }

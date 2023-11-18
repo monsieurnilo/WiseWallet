@@ -26,14 +26,15 @@ class GraphScreen extends React.Component {
       <View>
         <Header></Header>
         <View>
-          <Text style={{ fontSize: 20 }}>Mon graphe</Text>
+          <Text style={{ fontSize: 20 }}>Comparaison des budgets</Text>
           <Link to="/budget">
-            <Text>Gérer mon budget</Text>
+            <Text style={{ fontSize: 15 }}>Gérer mon budget</Text>
           </Link>
+          <Text style={{ fontSize: 15 }}>Mon Graphe</Text>
           {graphData && <Graph graphData={graphData} />}
         </View>
         <View>
-          <Text>Moyenne nationale</Text>
+          <Text style={{ fontSize: 15 }}>Moyenne nationale</Text>
           <Graph />
         </View>
         <Footer></Footer>

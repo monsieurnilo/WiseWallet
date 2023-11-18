@@ -22,18 +22,30 @@ class BudgetScreen extends React.Component {
 
   render() {
     const { budgetData } = this.state;
-    return (
-      <View>
-        <Header></Header>
-        <Text style={{ fontSize: 20 }}>Budget Screen</Text>
-        {budgetData && <Budget budgetData={budgetData}></Budget>}
+    if (budgetData) {
+      return (
+        <View>
+          <Header></Header>
+          <Text style={{ fontSize: 20 }}>Budget Screen</Text>
+          {budgetData && <Budget budgetData={budgetData}></Budget>}
 
-        <Link to="/graph">
-          <Text>Comparer mon budget</Text>
-        </Link>
-        <Footer></Footer>
-      </View>
-    );
+          <Link to="/graph">
+            <Text>Comparer mon budget</Text>
+          </Link>
+          <Footer></Footer>
+        </View>
+      );
+    } else {
+      return (
+        <View>
+          <Header></Header>
+          <View>
+            <Text>Loading ..</Text>
+          </View>
+          <Footer></Footer>
+        </View>
+      );
+    }
   }
 }
 

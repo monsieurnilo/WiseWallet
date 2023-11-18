@@ -86,19 +86,17 @@ export default class Budget extends React.Component {
       this.state.numberData.length === 0
     ) {
       return (
-        <View style={styles.container}>
+        <View>
           <Text>Loading ....</Text>
         </View>
       );
     } else {
       return (
         <View id="test" style={styles.container}>
-          <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10 }}>
-            Budget Table
-          </Text>
+          <Text style={styles.header}>Budget Table</Text>
 
           <View style={styles.section}>
-            <DataTable style={{ marginBottom: 20 }}>
+            <DataTable style={styles.dataTable}>
               <DataTable.Header style={styles.tableHeader}>
                 <DataTable.Title>Catégorie</DataTable.Title>
                 <DataTable.Title>Valeur</DataTable.Title>
