@@ -40,6 +40,15 @@ export default class Graph extends React.Component {
     this.nameData = Object.keys(this.graphData.data);
     this.numberData = Object.values(this.graphData.data);
     this.graphColors = pastelColors.slice(0, this.nameData.length);
+
+    // Sort data and colors based on the order of national values
+    const nationalOrder = Object.keys(natGraph);
+    this.nameData.sort(
+      (a, b) => nationalOrder.indexOf(a) - nationalOrder.indexOf(b)
+    );
+    this.graphColors = this.nameData.map(
+      (name) => this.graphColors[nationalOrder.indexOf(name)]
+    );
   }
 
   render() {
@@ -58,6 +67,8 @@ export default class Graph extends React.Component {
     };
 
     const screenWidth = Dimensions.get("window").width;
+
+    const total = data.reduce((sum, item) => sum + item.number, 0);
 
     return (
       <View>
@@ -90,7 +101,9 @@ export default class Graph extends React.Component {
                   marginRight: 5,
                 }}
               />
-              <Text>{item.name}</Text>
+              <Text>
+                {((item.number / total) * 100).toFixed(2)}% {item.name}
+              </Text>
             </View>
           ))}
         </View>
