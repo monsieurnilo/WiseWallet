@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { ScrollView, View, Text } from "react-native";
 import { Link } from "react-router-native";
 import Graph from "../components/budget/graph/Graph";
 import fetchGraphData from "../components/budget/graph/graphService";
@@ -23,7 +23,7 @@ class GraphScreen extends React.Component {
     const { graphData } = this.state;
 
     return (
-      <View>
+      <ScrollView>
         <Header></Header>
         <View>
           <Text style={{ fontSize: 20 }}>Comparaison des budgets</Text>
@@ -38,7 +38,7 @@ class GraphScreen extends React.Component {
           <Graph />
         </View>
         <Footer></Footer>
-      </View>
+      </ScrollView>
     );
   }
 }

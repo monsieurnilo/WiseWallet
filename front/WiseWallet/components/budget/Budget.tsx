@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, TouchableOpacity, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  Vibration,
+} from "react-native";
 import { DataTable } from "react-native-paper";
 import { Picker } from "@react-native-picker/picker";
 import budgetStyle from "./budgetStyleet";
@@ -66,6 +72,8 @@ export default class Budget extends React.Component {
         numberData: Object.values(newData),
       };
     });
+
+    Vibration.vibrate();
   };
 
   async componentDidMount() {
