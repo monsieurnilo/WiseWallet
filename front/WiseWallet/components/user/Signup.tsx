@@ -5,10 +5,12 @@ import { TextInput, Button } from "react-native-paper";
 const SignUp = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [confirm_password, setConfirmPassword] = React.useState("");
 
   const handleSignUp = () => {
     console.log("Email:", email);
     console.log("Password:", password);
+    console.log("Confirm password:", confirm_password);
   };
 
   return (
@@ -27,8 +29,8 @@ const SignUp = () => {
       <TextInput
         placeholder="Confirm password"
         secureTextEntry
-        onChangeText={(text) => setPassword(text)}
-        value={password}
+        onChangeText={(text) => setConfirmPassword(text)}
+        value={confirm_password}
       />
 
       <Button mode="contained" onPress={() => handleSignUp}>
