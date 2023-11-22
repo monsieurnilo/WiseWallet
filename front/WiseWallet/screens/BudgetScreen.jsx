@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { ScrollView, View, Text } from "react-native";
 import { Link } from "react-router-native";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -24,7 +24,7 @@ class BudgetScreen extends React.Component {
     const { budgetData } = this.state;
     if (budgetData) {
       return (
-        <View>
+        <ScrollView>
           <Header></Header>
           <Text style={{ fontSize: 20 }}>Budget Screen</Text>
           {budgetData && <Budget budgetData={budgetData}></Budget>}
@@ -33,7 +33,7 @@ class BudgetScreen extends React.Component {
             <Text>Comparer mon budget</Text>
           </Link>
           <Footer></Footer>
-        </View>
+        </ScrollView>
       );
     } else {
       return (

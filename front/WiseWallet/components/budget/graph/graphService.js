@@ -1,12 +1,12 @@
 async function graphService() {
     const userId = "653a6319ac24c8a03dc40ca9";
-    const bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTNhNjMxOWFjMjRjOGEwM2RjNDBjYTkiLCJpYXQiOjE2OTgzMjUzNzMsImV4cCI6MTY5ODQxMTc3M30.xLZT8w4zM1ZJbHwd0V4VLd08fmoWjRKbzZsRNDsqLtQ";
+    const bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTNhNjMxOWFjMjRjOGEwM2RjNDBjYTkiLCJpYXQiOjE3MDA2NjA0MDIsImV4cCI6MTcwMDc0NjgwMn0.yL2vJZ5pS4n6BjafXVeci9p58ZPO5A2KT5pBRWw8k5c"
 
     let categories = {};
     let expenses = [];
     // Fetch categories
     try {
-        const response = await fetch(`http://localhost:3000/category`, {
+        const response = await fetch(`https://back-wise-wallet.onrender.com/category`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${bearerToken}`
@@ -25,11 +25,11 @@ async function graphService() {
 
     // Fetch expenses
     try {
-        const response = await fetch(`http://localhost:3000/budget/${userId}`, {
+        const response = await fetch(`https://back-wise-wallet.onrender.com/budget/${userId}`, {
             method: "GET",
-            // headers: {
-            //     Authorization: `Bearer ${bearerToken}`
-            // }
+            headers: {
+                Authorization: `Bearer ${bearerToken}`
+            }
         });
 
         if (!response.ok) {

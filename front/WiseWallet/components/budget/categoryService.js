@@ -1,12 +1,12 @@
 const userId = "653a6319ac24c8a03dc40ca9"; //test user
-const bearerToken = "not implemented yet"
+const bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTNhNjMxOWFjMjRjOGEwM2RjNDBjYTkiLCJpYXQiOjE3MDA2NjA0MDIsImV4cCI6MTcwMDc0NjgwMn0.yL2vJZ5pS4n6BjafXVeci9p58ZPO5A2KT5pBRWw8k5c"
 
 
 async function categoryService(categoryName) {
     let categories = {};
     // Fetch categories
     try {
-        const response = await fetch(`http://localhost:3000/category`, {
+        const response = await fetch(`https://back-wise-wallet.onrender.com/category`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${bearerToken}`
