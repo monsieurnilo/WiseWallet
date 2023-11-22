@@ -1,8 +1,8 @@
 import graphService from "./graph/graphService";
 import fetchCategoryID from "./categoryService";
 import fetchBudgetData from "./getBudgetData";
-const userId = "653a6319ac24c8a03dc40ca9"; //test user
-const bearerToken = "not implemented yet"
+const userId = localStorage.getItem('userid');
+const bearerToken = localStorage.getItem('token')
 
 
 async function budgetService(budgetData, categoryName, value) {
