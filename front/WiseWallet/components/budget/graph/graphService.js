@@ -1,12 +1,12 @@
 async function graphService() {
-    const userId = localStorage.getItem('userid');
+    const userId = localStorage.getItem('userId');
     const bearerToken = localStorage.getItem('token')
 
     let categories = {};
     let expenses = [];
     // Fetch categories
     try {
-        const response = await fetch(`http://localhost:3000/category`, {
+        const response = await fetch(`https://back-wise-wallet.onrender.com/category`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${bearerToken}`
@@ -25,11 +25,11 @@ async function graphService() {
 
     // Fetch expenses
     try {
-        const response = await fetch(`http://localhost:3000/budget/${userId}`, {
+        const response = await fetch(`https://back-wise-wallet.onrender.com/budget/${userId}`, {
             method: "GET",
-            // headers: {
-            //     Authorization: `Bearer ${bearerToken}`
-            // }
+            headers: {
+                Authorization: `Bearer ${bearerToken}`
+            }
         });
 
         if (!response.ok) {

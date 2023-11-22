@@ -1,7 +1,7 @@
 import graphService from "./graph/graphService";
 import fetchCategoryID from "./categoryService";
 import fetchBudgetData from "./getBudgetData";
-const userId = localStorage.getItem('userid');
+const userId = localStorage.getItem('userId');
 const bearerToken = localStorage.getItem('token')
 
 
@@ -26,7 +26,7 @@ async function updateCategoryBudget(userId, bearerToken, categoryID, value) {
     const budgetData = await fetchBudgetData(userId, categoryID)
     const newAmount = parseFloat(budgetData.amount) + parseFloat(value);
     try {
-        const response = await fetch(`http://localhost:3000/budget/${budgetData._id}`, {
+        const response = await fetch(`https://back-wise-wallet.onrender.com/budget/${budgetData._id}`, {
             method: "PUT",
             headers: {
                 Authorization: `Bearer ${bearerToken}`,
@@ -52,7 +52,7 @@ async function updateCategoryBudget(userId, bearerToken, categoryID, value) {
 
 async function newCategoryBudget(userId, bearerToken, categoryID, value) {
     try {
-        const response = await fetch(`http://localhost:3000/budget`, {
+        const response = await fetch(`https://back-wise-wallet.onrender.com/budget`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${bearerToken}`,

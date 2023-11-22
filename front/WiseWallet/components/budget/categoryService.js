@@ -5,7 +5,7 @@ async function categoryService(categoryName) {
     let categories = {};
     // Fetch categories
     try {
-        const response = await fetch(`http://localhost:3000/category`, {
+        const response = await fetch(`https://back-wise-wallet.onrender.com/category`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${bearerToken}`

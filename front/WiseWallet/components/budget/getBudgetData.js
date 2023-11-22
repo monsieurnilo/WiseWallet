@@ -1,9 +1,9 @@
-const userId = localStorage.getItem('userid');
+const userId = localStorage.getItem('userId');
 const bearerToken = localStorage.getItem('token')
 
 async function getBudgetIdAndAmount(userId, categoryId) {
   try {
-    const response = await fetch(`http://localhost:3000/budget/${userId}`, {
+    const response = await fetch(`https://back-wise-wallet.onrender.com/budget/${userId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${bearerToken}`,

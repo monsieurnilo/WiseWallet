@@ -72,41 +72,51 @@ export default class Graph extends React.Component {
 
     return (
       <View>
-        <PieChart
-          data={data}
-          width={screenWidth}
-          height={250}
-          chartConfig={chartConfig}
-          accessor="number"
-          backgroundColor="transparent"
-          paddingLeft="0"
-          hasLegend={false}
-        />
-        <View>
-          {data.map((item, index) => (
-            <View
-              key={index}
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                marginBottom: 5,
-              }}
-            >
-              <View
-                style={{
-                  width: 10,
-                  height: 10,
-                  backgroundColor: item.color,
-                  borderRadius: 5,
-                  marginRight: 5,
-                }}
-              />
-              <Text>
-                {((item.number / total) * 100).toFixed(2)}% {item.name}
-              </Text>
+        {data.every((item) => item.number === 0) ? (
+          <Text>Pas de flux d'argent</Text>
+        ) : (
+          <>
+            <PieChart
+              data={data}
+              width={screenWidth}
+              height={250}
+              chartConfig={chartConfig}
+              accessor="number"
+              backgroundColor="transparent"
+              paddingLeft="0"
+              hasLegend={false}
+            />
+            <View>
+              {data.map((item, index) => (
+                <View
+                  key={index}
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    marginBottom: 5,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: 10,
+                      height: 10,
+                      backgroundColor: item.color,
+                      borderRadius: 5,
+                      marginRight: 5,
+                    }}
+                  />
+                  <Text>
+                    {total !== 0
+                      ? `${((item.number / total) * 100).toFixed(2)}% ${
+                          item.name
+                        }`
+                      : "0%"}
+                  </Text>
+                </View>
+              ))}
             </View>
-          ))}
-        </View>
+          </>
+        )}
       </View>
     );
   }
