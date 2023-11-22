@@ -8,6 +8,7 @@ class HomeScreen extends React.Component {
     return (
       <View>
         <Header></Header>
+        <Text>TON PERE IL EST CHAUVE</Text>
         <Footer></Footer>
       </View>
     );

@@ -1,33 +1,33 @@
-import React from "react";
-import { View, Text, StyleSheet} from "react-native";
-import { Link } from "react-router-native";
+import * as React from 'react';
+import { BottomNavigation, Text } from 'react-native-paper';
 
-function Footer(){
-    return (
-        <View style={{ borderStyle: 'solid', borderTopWidth: 2, borderColor: 'blue', paddingTop: 10}}>
-            <View style={{ borderStyle: 'solid', borderWidth: 2, borderColor: 'blue', padding: 5, marginRight:10}}>
-                <Link to="/about" >
-                    <Text >A propos</Text>
-                </Link>
-            </View>
-        </View>
-          
-    )
-}
+const MusicRoute = () => <Text>Music</Text>;
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems:"center",
-      marginTop: 30,
-    },
-    name: {
-        fontSize: 20,
-        textDecorationLine: 'underline',
-    }
+const AlbumsRoute = () => <Text>Albums</Text>;
+
+const RecentsRoute = () => <Text>Recents</Text>;
+
+const MyComponent = () => {
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: 'music', title: 'Music', icon: 'queue-music' },
+    { key: 'albums', title: 'Albums', icon: 'album' },
+    { key: 'recents', title: 'Recents', icon: 'history' },
+  ]);
+
+  const renderScene = BottomNavigation.SceneMap({
+    music: MusicRoute,
+    albums: AlbumsRoute,
+    recents: RecentsRoute,
   });
 
+  return (
+    <BottomNavigation
+      navigationState={{ index, routes }}
+      onIndexChange={setIndex}
+      renderScene={renderScene}
+    />
+  );
+};
 
-
-export default Footer;
-
+export default MyComponent;
