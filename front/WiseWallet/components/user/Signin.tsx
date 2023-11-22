@@ -1,6 +1,7 @@
 import * as React from "react";
 import { View } from "react-native";
 import { TextInput, Button } from "react-native-paper";
+import loginService from "./loginService";
 
 const SignIn = () => {
   const [email, setEmail] = React.useState("");
@@ -9,6 +10,7 @@ const SignIn = () => {
   const handleSignIn = () => {
     console.log("Email:", email);
     console.log("Password:", password);
+    loginService(email, password);
   };
 
   return (
@@ -25,7 +27,7 @@ const SignIn = () => {
         value={password}
       />
 
-      <Button mode="contained" onPress={() => handleSignIn}>
+      <Button mode="contained" onPress={() => handleSignIn()}>
         Press me
       </Button>
     </View>
