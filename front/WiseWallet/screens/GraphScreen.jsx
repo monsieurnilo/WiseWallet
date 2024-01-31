@@ -37,7 +37,7 @@ class GraphScreen extends React.Component {
           >
             Gérer mon budget
           </Text>
-        <ScrollView>
+        <ScrollView> 
           
           <View>
             <Text variant="titleMedium" style={{textAlign : "center"}}>Mon Graphe</Text>
