@@ -1,16 +1,15 @@
 import React from "react";
-import { View, Dimensions, Text } from "react-native";
+import { View, Dimensions } from "react-native";
 import UserList from "../components/UserList";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
+import { Text } from 'react-native-paper';
 
 function AboutScreen() {
   return (
     <View style={{ height: height, width: width }}>
       <Header></Header>
-      <Text>Les joyeux Lurons</Text>
+      <Text variant="titleLarge" style={{ textAlign: "center" }} >Les joyeux Lurons</Text>
       <UserList data={sampleData} />
-      <Footer></Footer>
     </View>
   );
 }

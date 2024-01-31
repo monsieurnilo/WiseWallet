@@ -1,22 +1,23 @@
 import React from "react";
-import { View, Text, Image, FlatList, StyleSheet} from "react-native";
+import { FlatList} from "react-native";
+import { Card, Text, Paragraph  } from 'react-native-paper';
 
 const UserList = ({ data }) => {
     
     const _renderItem2 = ({ item }) => (
-        <View>
-        <Text>- {item}</Text>
-        </View>
+          <Paragraph>-  {item}</Paragraph>
     );
 
     const renderItem = ({ item }) => (
-        <View style={styles.container}>
-            <Text style={styles.name}>{item.name}</Text>
-            <Image source={(item.picture)} style={{width: 100, height: 100, margin:15}}/>  
-            <Text>{item.email}</Text>
-            <Text>Tâches effectuées :</Text>
-            <FlatList data={item.jobs} renderItem={_renderItem2}/>
-        </View>
+      <Card style={{ margin: 10 }}>
+        <Card.Content>
+          <Text variant="titleLarge" >{item.name}</Text>
+          <Text variant="bodyMedium">{item.email}</Text>
+        </Card.Content>
+        <Card.Cover source={(item.picture)} style={{ margin: 10 }}  />
+        <Text variant="titleSmall" style={{ marginLeft: 20 }}>Tâches effectuées :</Text>
+        <FlatList data={item.jobs} renderItem={_renderItem2} style={{ marginBottom: 10, marginLeft : 30 }}/>
+      </Card>
     );
 
     return (
@@ -27,16 +28,7 @@ const UserList = ({ data }) => {
       );
 }
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems:"center",
-    },
-    name: {
-        fontSize: 20,
-        textDecorationLine: 'underline',
-    }
-  });
+
 
 
 

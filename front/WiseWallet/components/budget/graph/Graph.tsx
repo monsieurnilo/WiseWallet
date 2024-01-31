@@ -1,6 +1,7 @@
 import natGraph from "./natGraph.json";
-import { Dimensions, View, Text } from "react-native";
+import { Dimensions, View } from "react-native";
 import { PieChart } from "react-native-chart-kit";
+import { Avatar, Button, Card, Text } from "react-native-paper";
 import React from "react";
 
 const pastelColors = [
@@ -71,17 +72,20 @@ export default class Graph extends React.Component {
     const total = data.reduce((sum, item) => sum + item.number, 0);
 
     return (
-      <View>
-        <PieChart
-          data={data}
-          width={screenWidth}
-          height={250}
-          chartConfig={chartConfig}
-          accessor="number"
-          backgroundColor="transparent"
-          paddingLeft="0"
-          hasLegend={false}
-        />
+      <Card style={{ marginHorizontal: 25, marginVertical : 10 }}>
+        <Card.Content>
+        <View style={{ alignItems: 'center' }}>
+          <PieChart
+            data={data}
+            width={300}
+            height={200}
+            chartConfig={chartConfig}
+            accessor="number"
+            backgroundColor="transparent"
+            paddingLeft="70"
+            hasLegend={false}
+          />
+          </View>
         <View>
           {data.map((item, index) => (
             <View
@@ -107,7 +111,8 @@ export default class Graph extends React.Component {
             </View>
           ))}
         </View>
-      </View>
+        </Card.Content>
+      </Card>
     );
   }
 }

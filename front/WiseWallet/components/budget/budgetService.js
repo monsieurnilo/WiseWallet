@@ -1,8 +1,13 @@
 import graphService from "./graph/graphService";
 import fetchCategoryID from "./categoryService";
 import fetchBudgetData from "./getBudgetData";
-const userId = "653a6319ac24c8a03dc40ca9"; //test user
-const bearerToken = "not implemented yet"
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const userId = AsyncStorage.getItem('userId');
+const bearerToken = AsyncStorage.getItem('token');
+
+// const userId = "653a6319ac24c8a03dc40ca9";
+// const bearerToken = "not implemented yet"
 
 
 async function budgetService(budgetData, categoryName, value) {
